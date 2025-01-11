@@ -6,21 +6,20 @@
     <title>Brian Huynh's Resume</title>
 </head>
 <body>
+    <nav> 
+        <a href="../index.html">Home</a>
+        <a href="../contact/index.html"> Contact</a>
+        <a href="../projects/index.html"> Projects</a>
+        <a href="https://github.com/brianthuynh10" target="_blank">My GitHub repo</a>
+        <a href="index.html">Resume/CV</a>
+
+    </nav>
     <header>
         <h1>Brian Huynh</h1>
         <p class ='contact-info'>
             Email: bth001@ucsd.edu | Location: La Jolla, CA
         </p>
     </header>
-
-    <nav> 
-        <a href="../index.html">Home</a>
-        <a href="../contact/index.html"> Contact</a>
-        <a href="../projects/index.html"> Projects</a>
-        <a href="https://github.com/brianthuynh10" target="_blank">My GitHub repo</a>
-        <a href="index.html" target="_blank">Resume/CV</a>
-
-    </nav>
 
     <section class="education">
         <h2>Education</h2>
@@ -38,22 +37,51 @@
 
     <section class="experience">
         <h2>Work Experience</h2>
-        <div class="'job_1"> 
+        <div class="job_1"> 
             <h3>Instructional Assistant</h3>
-            <p> University of California, San Diego | December 2024 - Present </p>
+            <p> University of California, San Diego </p>
+            <p> <time datetime="2024-12"> December 2024</time> - Present </p>
             <li> Responsible for creating disucssion assignments to help students interact with material</li>
             <li> Lead discussion sections of 60+ students </li>
             <li> Creating and grading quizzes for approximately 250+ students</li>
         </div>
         <div class="job_2"> 
             <h3>Math Tutor</h3>
-            <p>Cypress College Learning Resource Center | August 2022 - September 2023 </p>
+            <p>Cypress College Learning Resource Center </p>
+            <p> <time datetime="2022-08"> August 2022</time> - <time datetime="2023-09">September 2023</time></p>
             <li> Tutored Calculus I & II, Multivariable Calculus, Linear Algebra & Differential Equations</li>
             <li> Worked closely with Cypress College Disability Support Services to offer private tutoring for individuals with learning disabilities </li>
         </div>
-
     </section>
-        
+
+    <article class="projects">
+        <h2>Projects</h2>
+        <div class="p1">
+            <h3><a href="https://brianthuynh10.github.io/bth-project" target=_blank>
+                Investigating Recipes & Calorie Predictor  </a></h3>
+            <p> Published: <time datetime = "2024-12"> December 2024 </time></p>
+            <li> Investigated the healthiness of high-protein recipes through exploratory data analysis (EDA), data cleaning, and hypothesis testing using pandas.</li>
+            <li> Built a linear regression model with scikit-learn achieving R-squared value of 0.98 in predicting recipe calorie counts; evaluated model fairness between older and newer recipes
+            </li>
+            <li> Derived insights into balancing caloric content and nutritional quality for health-conscious meal planning. </li>
+        </div>
+
+        <div class="p2">
+            <h3><a href="https://github.com/brianthuynh10/loan_predictor/tree/main" target=_blank>
+                Predicting the Outcome of Loans  </a></h3>
+            <p> Published: <time datetime = "2024-12"> December 2024 </time></p>
+            <li>Conducted data cleaning and preprocessing to handle missing values, outliers, and categorical variables in financial datasets. </li>
+            <li>Performed exploratory data analysis (EDA) to uncover trends and correlations influencing loan defaults. </li>
+            <li>Built and compared prediction models using Random Forests, Support Vector Machines (SVMs), and K-Nearest Neighbors (KNN) to classify loan default risk accurately. </li>
+        </div>
+
+        <section class="skills"> 
+            <h2>Skills</h2>
+                <li>Programming Languages: Python, Java, C++, R </li>
+                <li>Math: Theoretical Foundations of Data Science, Probability and Statistics, Mathematical Statistics</li>
+                <li>Data Analysis: Machine Learning, Data Cleaning, EDA</li>
+                <li>Languages: English, Vietnamese </li>
+        </section>
 
 </body>
 </html>
