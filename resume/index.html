@@ -7,82 +7,130 @@
     <title>Brian Huynh's Resume</title>
 </head>
 <body>
-    <nav> 
-        <a href="../index.html">Home</a>
-        <a href="../projects/index.html"> Projects</a>
-        <a href="https://github.com/brianthuynh10" target="_blank">My GitHub repo</a>
-        <a href="index.html">Resume/CV</a>
-        <a href="../contact/index.html"> Contact</a>
-
-    </nav>
+    
     <header>
-        <h1>Brian Huynh</h1>
-        <p class ='contact-info'>
-            Email: bth001@ucsd.edu | Location: La Jolla, CA
-        </p>
+        <nav> 
+            <a href="../index.html">Home</a>
+            <a href="../projects/index.html"> Projects</a>
+            <a href="https://github.com/brianthuynh10" target="_blank">My GitHub repo</a>
+            <a class='current' href="index.html">Resume/CV</a>
+            <a href="../contact/index.html"> Contact</a>
+    
+        </nav>
+        <h1 class = "resume_line">
+            Resume/CV
+        </h1>
+        <div class >
+            <h2 class = "resume_name"> 
+                <a class = 'linkedin'href="https://www.linkedin.com/in/brian-huynh-33889823b/" target="_blank">
+                    Brian Huynh
+                    <img src="../images/linked_in_logo.png" alt = 'LinkedIn Logo' class="linked-logo">
+                </a>
+            </h2>
+            <article class ='contact-info'>
+                <h5>
+                    Phone: 123-456-7890 | Email: bth001@ucsd.edu | Location: La Jolla, CA
+                </h5>
+            </article>
+        </div>
     </header>
 
     <section class="education">
-        <h2>Education</h2>
-        <div class="edu"> 
-            <h3>University of California, San Diego </h3>
-            <p> Major: Data Science</p>
-            <p> Expected Graduation: June 2026 </p>
+        <h3 class = "resume_line">Education</h3>
+        <div class="ucsd">
+            <ul>
+                <li>
+                    <div class="school-header">
+                        <h4>University of California, San Diego</h4>
+                        <img src="../images/ucsd_logo.png" alt="UCSD Logo" class="school-logo">
+                    </div>
+                    <p>Major: Data Science</p>
+                    <p>Expected Graduation: June 2026</p>
+                </li>
+            </ul>
         </div>
-        <div class="cc">
-            <h3> Cypress Community College</h3>
-            <p> A.S in Mathematics & Economics</p>
-            <p> Graduated May 2023</p>
+        
+        <div class="cypress">
+            <ul>
+                <li>
+                    <div class="school-header">
+                        <h4>Cypress Community College</h4>
+                        <img src="../images/cypress_logo.png" alt="Cypress College Logo" class="school-logo">
+                    </div>
+                    <p>A.S in Mathematics & A.A in Economics</p>
+                    <p>Graduated May 2023</p>
+                </li>
+            </ul>
         </div>
     </section>
 
     <section class="experience">
-        <h2>Work Experience</h2>
-        <div class="job_1"> 
-            <h3>Instructional Assistant</h3>
-            <p> University of California, San Diego </p>
-            <p> <time datetime="2024-12"> December 2024</time> - Present </p>
-            <li> Responsible for creating disucssion assignments to help students interact with material</li>
-            <li> Lead discussion sections of 60+ students </li>
-            <li> Creating and grading quizzes for approximately 250+ students</li>
-        </div>
-        <div class="job_2"> 
-            <h3>Math Tutor</h3>
-            <p>Cypress College Learning Resource Center </p>
-            <p> <time datetime="2022-08"> August 2022</time> - <time datetime="2023-09">September 2023</time></p>
-            <li> Tutored Calculus I & II, Multivariable Calculus, Linear Algebra & Differential Equations</li>
-            <li> Worked closely with Cypress College Disability Support Services to offer private tutoring for individuals with learning disabilities </li>
-        </div>
+        <h3 class="resume_line">Work Experience</h3>
+        <ul>
+            <div class="job"> 
+                <li>
+                <h4>Instructional Assistant at University of California, San Diego</h4>
+                    <p> <time datetime="2024-12"> December 2024</time> - Present </p>
+                        <ul>
+                            <li> Responsible for creating disucssion assignments to help students interact with material</li>
+                            <li> Lead discussion sections of 60+ students </li>
+                            <li> Creating and grading quizzes for approximately 250+ students</li>
+                        </ul>
+                </li>
+            </div>
+        </ul>
+        <ul>
+            <div class="job"> 
+                <li>
+                <h4>Math Tutor at Cypress Community College</h4>
+                    <p> <time datetime="2022-08"> August 2022</time> - <time datetime="2023-09">September 2023</time> </p>
+                        <ul>
+                            <li> Tutored Calculus I & II, Multivariable Calculus, Linear Algebra & Differential Equations</li>
+                            <li> Worked closely with Cypress College Disability Support Services to offer private tutoring for individuals with learning disabilities  </li>
+                        </ul>
+                </li>
+            </div>
+        </ul>
     </section>
 
-    <article class="projects">
-        <h2>Projects</h2>
-        <div class="p1">
-            <h3><a href="https://brianthuynh10.github.io/bth-project" target=_blank>
-                Investigating Recipes & Calorie Predictor  </a></h3>
-            <p> Published: <time datetime = "2024-12"> December 2024 </time></p>
-            <li> Investigated the healthiness of high-protein recipes through exploratory data analysis (EDA), data cleaning, and hypothesis testing using pandas.</li>
-            <li> Built a linear regression model with scikit-learn achieving R-squared value of 0.98 in predicting recipe calorie counts; evaluated model fairness between older and newer recipes
-            </li>
-            <li> Derived insights into balancing caloric content and nutritional quality for health-conscious meal planning. </li>
-        </div>
+    <section class="personal_project">
+        <h3 class="resume_line">Projects</h3>
+        <ul>
+            <div class="p1">
+               <li>
+                <h4 class= "pp"><a class= "pp" href="https://brianthuynh10.github.io/bth-project" target=_blank>
+                    Investigating Recipes & Calorie Predictor  </a></h4>
+                    <p> Published: <time datetime = "2024-12"> December 2024 </time></p>
+                    <ul>
+                        <li> Investigated the healthiness of high-protein recipes through exploratory data analysis (EDA), data cleaning, and hypothesis testing using pandas.</li>
+                        <li> Built a linear regression model with scikit-learn achieving R-squared value of 0.98 in predicting recipe calorie counts; evaluated model fairness between older and newer recipes </li>
+                        <li> Derived insights into balancing caloric content and nutritional quality for health-conscious meal planning. </li>
+                    </ul>
+                </li>
+            </div>
 
-        <div class="p2">
-            <h3><a href="https://github.com/brianthuynh10/loan_predictor/tree/main" target=_blank>
-                Predicting the Outcome of Loans  </a></h3>
-            <p> Published: <time datetime = "2024-12"> December 2024 </time></p>
-            <li>Conducted data cleaning and preprocessing to handle missing values, outliers, and categorical variables in financial datasets. </li>
-            <li>Performed exploratory data analysis (EDA) to uncover trends and correlations influencing loan defaults. </li>
-            <li>Built and compared prediction models using Random Forests, Support Vector Machines (SVMs), and K-Nearest Neighbors (KNN) to classify loan default risk accurately. </li>
-        </div>
+            <div class="p2">
+                <li>
+                <h4 class="pp"><a class= "pp" href="https://github.com/brianthuynh10/loan_predictor/tree/main" target=_blank>
+                    Predicting the Outcome of Loans  </a></h4>
+                <p> Published: <time datetime = "2024-12"> December 2024 </time></p>
+                    <ul>
+                        <li>Conducted data cleaning and preprocessing to handle missing values, outliers, and categorical variables in financial datasets. </li>
+                        <li>Performed exploratory data analysis (EDA) to uncover trends and correlations influencing loan defaults. </li>
+                        <li>Built and compared prediction models using Random Forests, Support Vector Machines (SVMs), and K-Nearest Neighbors (KNN) to classify loan default risk accurately. </li>
+                    </ul>
+                </li>
+            </div>
+        </ul>
+    </section>
 
-        <section class="skills"> 
-            <h2>Skills</h2>
+    <section class="skills"> 
+            <h3 class="resume_line">Skills</h3>
                 <li>Programming Languages: Python, Java, C++, R </li>
                 <li>Math: Theoretical Foundations of Data Science, Probability and Statistics, Mathematical Statistics</li>
                 <li>Data Analysis: Machine Learning, Data Cleaning, EDA</li>
                 <li>Languages: English, Vietnamese </li>
-        </section>
+    </section>
 
 </body>
 </html>

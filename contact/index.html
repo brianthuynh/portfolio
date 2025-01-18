@@ -8,7 +8,6 @@
 </head>
 
 <body>
-    <h1>Contact Form</h1>
     <nav> 
         <a href="../index.html">Home</a>
         <a href="../projects/index.html"> Projects</a>
@@ -18,21 +17,21 @@
 
     </nav>
 
+    <h1>Contact Form</h1>
+
     <form action="mailto:bth001@ucsd.edu" method="POST" enctype="text/plain">
-        <label>Email: </label>
-        <input name="email" type="email">
-
-        <label>Subject: </label>
-        <input name="subject" type="text"> 
-
-        <label>Message:</label>
-        <textarea name="body">
-
-        </textarea>
-
-        <input type="submit" value="Submit">
-        
+            <label> Email:
+                <input name="email" type="email" placeholder="username@ucsd.edu"></input>
+            </label>
+            <label>Subject:
+                <input name="subject" type="email" placeholder="Greetings"></input>
+            </label>
+            <label> Message:
+            <textarea name="body" placeholder="Hello! My name is Brian"></textarea>
+            </label>
+        <button> Submit</button>
     </form>
+
     
 </body>
 </html>
