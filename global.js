@@ -14,9 +14,9 @@ document.body.insertAdjacentHTML(
 
 let pages = [
     { url: '', title: 'Home' },
-    { url: '/projects/', title: 'Projects' },
-    { url: '/contact/', title: 'Contact'},
-    { url: '/resume/', title: 'Resume'},
+    { url: 'projects/', title: 'Projects' },
+    { url: 'contact/', title: 'Contact'},
+    { url: 'resume/', title: 'Resume'},
     { url: 'https://github.com/brianthuynh', title :'GitHub Repo'}
   ];
 
@@ -29,7 +29,7 @@ for(let p of pages) {
     url = !ARE_WE_HOME && !url.startsWith('http') ? '../' + url : url
     let title = p.title;
     let a = document.createElement('a');
-    console.log(url)
+    console.log(a.host)
     a.href = url;
     a.textContent = title;
     nav.append(a);
