@@ -14,9 +14,9 @@ document.body.insertAdjacentHTML(
 
 let pages = [
     { url: '', title: 'Home' },
-    { url: 'https://brianthuynh.github.io/projects/', title: 'Projects' },
-    { url: 'https://brianthuynh.github.io/contact/', title: 'Contact'},
-    { url: 'https://brianthuynh.github.io/resume/', title: 'Resume'},
+    { url: 'portfolio/projects/', title: 'Projects' },
+    { url: 'portfolio/contact/', title: 'Contact'},
+    { url: 'portfolio/resume/', title: 'Resume'},
     { url: 'https://github.com/brianthuynh', title :'GitHub Repo'}
   ];
 const ARE_WE_HOME = document.documentElement.classList.contains('home');
