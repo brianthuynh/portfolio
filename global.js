@@ -14,9 +14,9 @@ document.body.insertAdjacentHTML(
 
 let pages = [
     { url: '', title: 'Home' },
-    { url: 'portfolio/projects/', title: 'Projects' },
-    { url: 'portfolio/contact/', title: 'Contact'},
-    { url: 'portfolio/resume/', title: 'Resume'},
+    { url: 'projects/', title: 'Projects' },
+    { url: 'contact/', title: 'Contact'},
+    { url: 'resume/', title: 'Resume'},
     { url: 'https://github.com/brianthuynh', title :'GitHub Repo'}
   ];
 
@@ -25,20 +25,22 @@ let nav = document.createElement('nav');
 document.body.prepend(nav);
 
 for(let p of pages) {
+    let title = p.title;
     let url = p.url
     url = !ARE_WE_HOME && !url.startsWith('http') ? '../' + url : url
-    let title = p.title;
     let a = document.createElement('a');
-    console.log(a.host)
     a.href = url;
     a.textContent = title;
+
+    a.classList.toggle(
+        'current',
+        a.host === location.host && a.pathname === location.pathname
+    );
+
+        if (a.host !== location.host){
+            a.target = "_blank";
+        }
     nav.append(a);
-    if (a.host === location.host && a.pathname === location.pathname) {
-        a.classList.add('current');
-    }
-    if (a.host !== location.host) {
-        a.target = "_blank";
-    }
 }
 
 
