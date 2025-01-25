@@ -13,7 +13,7 @@ document.body.insertAdjacentHTML(
 );
 
 let pages = [
-    { url: '', title: 'Home' },
+    { url: 'portfolio/', title: 'Home' },
     { url: 'portfolio/projects/', title: 'Projects' },
     { url: 'portfolio/contact/', title: 'Contact'},
     { url: 'portfolio/resume/', title: 'Resume'},
@@ -26,7 +26,7 @@ document.body.prepend(nav);
 
 for(let p of pages) {
     let url = p.url
-    url = !ARE_WE_HOME && !url.startsWith('http') ? '../portfolio' + url : url
+    url = !ARE_WE_HOME && !url.startsWith('http') ? '../' + url : url
     let title = p.title;
     let a = document.createElement('a');
     console.log(url)
