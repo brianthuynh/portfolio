@@ -1,5 +1,6 @@
 :root{ 
   --accent-color: #a0d2eb;
+  color-scheme: light dark;
 }
 
 body {
