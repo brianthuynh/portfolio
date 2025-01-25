@@ -29,15 +29,24 @@ for(let p of pages) {
     url = !ARE_WE_HOME && !url.startsWith('http') ? '../' + url : url
     let title = p.title;
     let a = document.createElement('a');
+    console.log(url)
     a.href = url;
     a.textContent = title;
     nav.append(a);
+    console.log('Found Home');
+    console.log(location.host);
+    console.log(location.pathname);
+    console.log(a.host);
+    console.log(a.pathname)
+
     if (a.host === location.host && a.pathname === location.pathname) {
         a.classList.add('current');
-        console.log("Here");
-        console.log(location.pathname);
+        console.log('Found Home');
         console.log(location.host);
-      }
+        console.log(location.pathname);
+        console.log(a.host);
+        console.log(a.pathname)
+    }
     if (a.host !== location.host) {
         a.target = "_blank";
     }
