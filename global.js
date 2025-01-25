@@ -18,40 +18,27 @@ let pages = [
     { url: 'portfolio/contact/', title: 'Contact'},
     { url: 'portfolio/resume/', title: 'Resume'},
     { url: 'https://github.com/brianthuynh', title :'GitHub Repo'}
-];
+  ];
 
-const ARE_WE_HOME = document.documentElement.classList.contains('home');
+const ARE_WE_HOME = document.documentElement.classList.contains('Home');
 let nav = document.createElement('nav');
 document.body.prepend(nav);
 
-// Calculate depth based on the pathname
-const pathDepth = window.location.pathname.split('/').filter(part => part.length > 0).length;
-
-for (let p of pages) {
-    let url = p.url;
-    // Adjust the URL based on the depth and whether it's an external link
-    if (!ARE_WE_HOME && !url.startsWith('http')) {
-        let prefix = '../'.repeat(pathDepth - 1); // Adjust to move up to the root directory
-        url = prefix + url;
-    }
+for(let p of pages) {
+    let url = p.url
+    url = !ARE_WE_HOME && !url.startsWith('http') ? '../' + url : url;
     let title = p.title;
     let a = document.createElement('a');
     a.href = url;
     a.textContent = title;
     nav.append(a);
-
-    // Highlight the current page link
     if (a.host === location.host && a.pathname === location.pathname) {
         a.classList.add('current');
-    }
-
-    // Open external links in a new tab
+      }
     if (a.host !== location.host) {
         a.target = "_blank";
     }
 }
-
-
 
 
 let select = document.querySelector('.dark-light')
