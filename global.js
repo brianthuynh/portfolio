@@ -5,9 +5,9 @@ document.body.insertAdjacentHTML(
     <label class="color-scheme">
         Theme:
         <select class='dark-light'>
-            <option value="Automatic">Automatic</option>
-            <option value = "Dark">Dark</option>
-            <option value = "Light">Light</option>
+            <option value="light dark">Automatic</option>
+            <option value ="dark">Dark</option>
+            <option value ="light">Light</option>
         </select>
     </label>`
 );
