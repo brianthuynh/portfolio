@@ -3,7 +3,6 @@
 }
 
 body {
-    
     /* Set line height to 1.5 times the font size
          and use the OS’s UI font as the website font
        */
@@ -15,6 +14,15 @@ body {
     padding: 10px;
     margin-inline: max(1em, (100% - 100ch) / 2);
   }
+
+
+
+label.color-scheme{
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-family: inherit;
+}
 
 .description .profile {
     display: flex;  
@@ -47,11 +55,10 @@ nav {
   flex: 0.5;
   align-items: center;
   justify-content: center;
-  color: black;
   margin-bottom: auto;
   border-bottom-width: 0.4em;
   border-bottom-style: solid;
-  border-bottom-color: var(--accent-color);
+  border-bottom-color: oklch(50% 10% 200 / 40%);
   margin-bottom: 1em;
 }
 
@@ -70,12 +77,12 @@ nav a:hover, nav a.current {
   border-bottom-width: 0.4em;
   border-bottom-style: solid;
   border-bottom-color: grey;
-  background-color: var(--accent-color);
+  background-color: oklch(50% 10% 200 / 40%);
 }
 
 
 nav a.current {
-  background-color: white;
+  border-color: oklch(50% 10% 200 / 40%);
   border-bottom-color: grey; 
 }
 
@@ -175,7 +182,7 @@ a.linkedin:hover, h4.pp a:hover{
 .resume_line{ 
   border-bottom-width: 0.25em;
   border-bottom-style: solid;
-  border-bottom-color: black;
+  border-bottom-color: oklch(50% 10% 200 / 40%);;
   margin-bottom: 1em;
 }
 

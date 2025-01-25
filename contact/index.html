@@ -7,24 +7,16 @@
     <title>Brian Huynh's Contacts</title>
 </head>
 
+
 <body>
-    <nav> 
-        <a href="../index.html">Home</a>
-        <a href="../projects/index.html"> Projects</a>
-        <a href="https://github.com/brianthuynh10" target="_blank">My GitHub repo</a>
-        <a href="../resume/index.html">Resume/CV</a>
-        <a class="current" href="index.html"> Contact</a>
 
-    </nav>
 
+    <script type="module" src="../global.js"></script>
     <h1>Contact Form</h1>
 
-    <form action="mailto:bth001@ucsd.edu" method="POST" enctype="text/plain">
-            <label> Email:
-                <input name="email" type="email" placeholder="username@ucsd.edu"></input>
-            </label>
+    <form class = "mailme" action="mailto:bth001@ucsd.edu" method="GET">
             <label>Subject:
-                <input name="subject" type="email" placeholder="Greetings"></input>
+                <input name="subject" type="text" placeholder="Greetings"></input>
             </label>
             <label> Message:
             <textarea name="body" placeholder="Hello! My name is Brian"></textarea>
