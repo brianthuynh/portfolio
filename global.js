@@ -20,13 +20,15 @@ let pages = [
     { url: 'https://github.com/brianthuynh', title :'GitHub Repo'}
   ];
 
-const ARE_WE_HOME = document.documentElement.classList.contains('Home');
+const ARE_WE_HOME = document.documentElement.classList.contains('home');
 let nav = document.createElement('nav');
 document.body.prepend(nav);
 
 for(let p of pages) {
     let url = p.url
-    url = !ARE_WE_HOME && !url.startsWith('http') ? '../' + url : url;
+    if (!ARE_WE_HOME && !url.startsWith('http')) {
+        url = '../' + url;
+      }
     let title = p.title;
     let a = document.createElement('a');
     a.href = url;
@@ -34,6 +36,9 @@ for(let p of pages) {
     nav.append(a);
     if (a.host === location.host && a.pathname === location.pathname) {
         a.classList.add('current');
+        console.log("Here");
+        console.log(location.pathname);
+        console.log(location.host);
       }
     if (a.host !== location.host) {
         a.target = "_blank";
