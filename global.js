@@ -26,9 +26,7 @@ document.body.prepend(nav);
 
 for(let p of pages) {
     let url = p.url
-    if (!ARE_WE_HOME && !url.startsWith('http')) {
-        url = '../' + url;
-    }
+    url = !ARE_WE_HOME && !url.startsWith('http') ? '../' + url : url
     let title = p.title;
     let a = document.createElement('a');
     a.href = url;
