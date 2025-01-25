@@ -14,9 +14,9 @@ document.body.insertAdjacentHTML(
 
 let pages = [
     { url: '', title: 'Home' },
-    { url: 'projects/', title: 'Projects' },
-    { url: 'contact/', title: 'Contact'},
-    { url: 'resume/', title: 'Resume'},
+    { url: 'portfolio/projects/', title: 'Projects' },
+    { url: 'portfolio/contact/', title: 'Contact'},
+    { url: 'portfolio/resume/', title: 'Resume'},
     { url: 'https://github.com/brianthuynh', title :'GitHub Repo'}
   ];
 
@@ -33,19 +33,9 @@ for(let p of pages) {
     a.href = url;
     a.textContent = title;
     nav.append(a);
-    console.log('Found Home');
-    console.log(location.host);
-    console.log(location.pathname);
-    console.log(a.host);
-    console.log(a.pathname)
 
     if (a.host === location.host && a.pathname === location.pathname) {
         a.classList.add('current');
-        console.log('Found Home');
-        console.log(location.host);
-        console.log(location.pathname);
-        console.log(a.host);
-        console.log(a.pathname)
     }
     if (a.host !== location.host) {
         a.target = "_blank";
