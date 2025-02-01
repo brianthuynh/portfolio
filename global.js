@@ -123,7 +123,7 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
 
 export async function fetchGithubData(username){ 
     // return statement here
-    return fetchJSON(`https://api.github.com/users/brianthuynh10`);
+    return fetchJSON(`https://api.github.com/users/brianthuynh`);
 }
 
 
