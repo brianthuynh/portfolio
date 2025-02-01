@@ -190,3 +190,33 @@ a.linkedin:hover, h4.pp a:hover{
 h1.resume_line{ 
   border-bottom-width: 0.15em;
 }
+
+dl {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Creates four equal columns */
+  grid-auto-rows: auto; /* Row height is determined by content */
+  gap: 10px; /* Space between grid items */
+  padding: 20px; /* Padding around the entire grid */
+  margin: 20px 0; /* Vertical spacing for the list */
+  background-color: #f9f9f9; /* Light gray background */
+  border: 1px solid #ddd; /* Light border for some definition */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+dt, dd {
+  margin: 0; /* Remove default margin */
+}
+
+dt {
+  grid-row: 1; /* Place all dt elements in the first row */
+  font-weight: bold; /* Make the term bold */
+  color: #0056b3; /* A shade of blue for terms */
+}
+
+dd {
+  grid-row: 2; /* Place all dd elements in the second row */
+  color: #444; /* Darker grey for descriptions */
+}
+
+

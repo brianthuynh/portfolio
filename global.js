@@ -81,5 +81,50 @@ function $$(selector, context = document) {
     return Array.from(context.querySelectorAll(selector));
 }
 
+export async function fetchJSON(url) {
+    try {
+        const response = await fetch(url);
+        console.log(response);
+        // Check if the fetch was successful
+        if (!response.ok) {
+            throw new Error(`Failed to fetch projects: ${response.statusText}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching or parsing JSON data:', error);
+    }
+}
 
-console.log('Finished Running')
+export function renderProjects(projects, containerElement, headingLevel = 'h2') {
+    // update the projects count in the heading with h1 size font
+    const projectsCount = document.getElementById('projects-count');
+    if (projectsCount) {
+        projectsCount.textContent = projects.length;
+    };
+
+    // Your code will go here
+    containerElement.innerHTML = '';
+    // loop through each project in the array of project
+    projects.forEach(project => {
+        // Create a new <article> element for each project
+        const article = document.createElement('article');
+
+        // Set the innerHTML of the article to include the project details
+        article.innerHTML = `
+            <h3>${project.title}</h3>
+            <img src="${project.image}" alt="${project.title}">
+            <p>${project.description}</p>
+        `;
+
+        // Append the new article to the container element
+        containerElement.appendChild(article);
+    });
+}
+
+export async function fetchGithubData(username){ 
+    // return statement here
+    return fetchJSON(`https://api.github.com/users/brianthuynh10`);
+}
+
+
+console.log('Finished Running');
