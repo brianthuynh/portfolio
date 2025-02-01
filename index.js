@@ -1,11 +1,11 @@
-import { fetchJSON, renderProjects, fetchGithubData} from 'global.js';
+import { fetchJSON, renderProjects, fetchGithubData} from '../global.js';
 
-const projects = await fetchJSON('lib/projects.json');
+const projects = await fetchJSON('../lib/projects.json');
 const latestProjects = projects.slice(0, 3);
 const projectContainer = document.querySelector('.projects');
 renderProjects(latestProjects, projectContainer, 'h2');
 
-const githubData = await fetchGithubData('brianthuynh10');
+const githubData = await fetchGithubData('brianthuynh');
 const profileStats = document.querySelector('#profile-stats');
 if (profileStats) {
     profileStats.innerHTML = `
