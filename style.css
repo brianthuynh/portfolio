@@ -102,19 +102,30 @@ label{
 .projects{
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  min-width: 15em;
+  max-width: 1fr;
   gap: 1em;
+  article{
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 3;
+    h2{
+      margin: 0;
+    }
+    p.year{
+      margin: 0;
+      color: gray;
+      font: Baskerville;
+      font-variant-numeric: oldstyle-nums;
+      font-size: 120%;
+    }
+  }
 }
 
 button{ 
   grid-column: 1 / -1;
 }
 
-article{
-  display: grid;
-  grid-template-rows: subgrid;
-  grid-row: span 3;
-  gap: 1em;
-}
 
 h1 {
   font-size: 2.25em;
@@ -220,3 +231,62 @@ dd {
 }
 
 
+/* Lab 5 Additions */
+#projects-pie-plot{
+  max-width: 20em;
+  margin-block: 2em;
+  overflow: visible;
+  gap: 1em;
+}
+
+/* Legend */
+
+/* Square with same width and height and aspect ratio 1/1 */
+div.container{
+  display:flex;
+  align-items: center;
+}
+.legend {
+  flex: 1;
+  list-style-type: none; /* Removes default list styling */
+  padding: 0.5em;
+  margin: 1em;
+  display: grid;
+  border: 2px solid #ccc;
+  grid-template-columns: repeat(auto-fill, minmax(12em, 1fr));
+}
+
+.legend li {
+  padding: 5px 0; 
+  display: flex; 
+  align-items: center; 
+}
+
+.swatch {
+  width: 20px; /* Sets the width of the swatch */
+  height: 20px; /* Sets the height of the swatch, making it a square */
+  aspect-ratio: 1 / 1; /* Keeps the width and height the same, maintaining a square shape */
+  background-color: var(--color); /* Uses the color variable set in HTML */
+  border-radius: 4px; /* Rounds the corners slightly. Set to 50% for a circle */
+  margin-right: 10px; /* Adds some space between the swatch and the text */
+  border: 1px solid #ccc; /* Adds a border around the swatch */
+}
+
+/* Adding features to the pie chart */
+&:has(path:hover) {
+  path:not(:hover) {
+    opacity: 0.5;
+  }
+}
+
+path {
+  transition: 300ms;
+}
+
+.selected {
+  --color: oklch(60% 45% 0) !important;
+
+  &:is(path) {
+    fill: var(--color);
+  }
+}

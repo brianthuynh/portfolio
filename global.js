@@ -102,18 +102,22 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
         projectsCount.textContent = projects.length;
     };
 
-    // Your code will go here
+    // Your code will go here   
     containerElement.innerHTML = '';
     // loop through each project in the array of project
     projects.forEach(project => {
         // Create a new <article> element for each project
         const article = document.createElement('article');
 
-        // Set the innerHTML of the article to include the project details
+        // Set the innerHTML of the article to include the project details  
+        // add the year under the project description wrap both in a div tag to ooccupy the same grid cell and overlap
         article.innerHTML = `
             <h3>${project.title}</h3>
             <img src="${project.image}" alt="${project.title}">
+        <div>
             <p>${project.description}</p>
+            <p class = 'year'>${project.year}</p?
+        </div>
         `;
 
         // Append the new article to the container element
