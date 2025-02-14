@@ -27,9 +27,10 @@ function renderPieChart(projectsGiven){
     let newArcs = newArcData.map((d) => d.value);
     
     let newSVG = d3.select('svg');
+    let newLegend = d3.select('.legend');
     // TODO: Clear up paths and legends
-    
     d3.select('.legend').selectAll('li').remove();
+
     newSVG.selectAll('path').remove();
     /* Part 5 */
     newArcs.forEach((arc, i) => {
@@ -46,7 +47,7 @@ function renderPieChart(projectsGiven){
                        selectedIndex === idx ? 'selected' : ''
                    ));
 
-                legend
+                newLegend
                     .selectAll('li')
                    .attr('class', (_, idx) => (
                           selectedIndex === idx ? 'selected' : ''
@@ -66,9 +67,8 @@ function renderPieChart(projectsGiven){
           .attr('d', newArcGenerator(arc))
           .attr('fill', colors(idx));
     })
-    let legend = d3.select('.legend');
     newData.forEach((d, idx) => {
-    legend.append('li')
+    newLegend.append('li')
             .attr('style', `--color:${colors(idx)}`) // set the style attribute while passing in parameters
             .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`); // set the inner html of <li>
     })
