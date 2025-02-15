@@ -29,13 +29,10 @@ document.body.prepend(nav);
 for(let p of pages) {
     let title = p.title;
     let url = p.url
-    console.log(url)
     url = !ARE_WE_HOME && !url.startsWith('http') ? '../' + url : url
     let a = document.createElement('a');
     a.href = url;
     a.textContent = title;
-    console.log(a.href)
-    console.log(title, url); // Debugging output
     a.classList.toggle(
         'current',
         a.host === location.host && a.pathname === location.pathname

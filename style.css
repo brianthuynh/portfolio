@@ -289,3 +289,89 @@ path {
     fill: var(--color);
   }
 }
+/* Styles for gridlines within the SVG */
+.gridlines line {
+  stroke: #ccc; /* Light grey color for gridlines */
+  stroke-width: 1; /* Thin lines */
+  stroke-dasharray: 5, 5; /* Optional: creates dashed lines */
+}
+
+.gridlines path {
+  stroke-width: 0; /* Removes the axis path line if present */
+}
+
+/* Step 3 */
+/* Specific styles for .info used in your DL for commits */
+dl.info-tooltip{
+  display: grid;
+  grid-template-columns: 150px repeat(2,auto);/* Two columns: 150px and the rest */
+  align-items: start;;
+  column-gap: 20px; /* Space between columns */
+  margin: 0; /* Resets default margin */
+  padding: 0; /* Resets default padding */
+}
+
+dl.info dt{
+  grid-column: 1; /* Places dt in the first column */
+  color: #666; /* Less prominent color */
+  margin: 0; /* Ensure no default margins disrupt the layout */
+}
+
+dl.info dd {
+  grid-column: 2; /* Places dd in the second column */
+  color: #000; /* More prominent color */
+  margin: 0; /* Ensure no default margins disrupt the layout */
+}
+
+
+/* Separate tooltip styling */
+.info-tooltip {
+  position: fixed;  /* Fixes the tooltip's position relative to the viewport */
+  background-color: white; /* Background color for readability */
+  border: 1px solid #ccc;  /* Border for visibility */
+  padding: 10px;    /* Padding around the content for better layout */
+  z-index: 1000;    /* Ensures the tooltip is above most other elements */
+  display: none;    /* Initially hidden, can be shown in response to an event */
+  max-width: 300px; /* Limit width to avoid overly wide tooltips */
+  overflow: hidden; /* Prevent content from spilling out */
+}
+
+
+
+circle {
+  transition: 200ms;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+circle:hover {
+  transform: scale(1.5);
+}
+
+dl.info-tooltip {
+  /* ... other styles ... */
+  transition-duration: 500ms;
+  transition-property: opacity, visibility;
+}
+
+dl.info-tooltip[hidden]:not(:hover, :focus-within) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@keyframes marching-ants {
+  to {
+    stroke-dashoffset: -8; /* 5 + 3 */
+  }
+}
+
+.selection {
+  fill-opacity: 0.1;
+  stroke: black;
+  stroke-opacity: 0.7;
+  stroke-dasharray: 5 3;
+  animation: marching-ants 2s linear infinite;
+}
+circle.selected {
+  fill: #ff6b6b;
+}
