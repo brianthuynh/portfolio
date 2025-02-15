@@ -304,9 +304,9 @@ path {
 /* Specific styles for .info used in your DL for commits */
 dl.info-tooltip{
   display: grid;
-  grid-template-columns: 150px repeat(2,auto);/* Two columns: 150px and the rest */
+  grid-template-columns: 100px repeat(2,auto);/* Two columns: 150px and the rest */
   align-items: start;;
-  column-gap: 20px; /* Space between columns */
+  column-gap: 5px; /* Space between columns */
   margin: 0; /* Resets default margin */
   padding: 0; /* Resets default padding */
 }
@@ -335,8 +335,6 @@ dl.info dd {
   max-width: 300px; /* Limit width to avoid overly wide tooltips */
   overflow: hidden; /* Prevent content from spilling out */
 }
-
-
 
 circle {
   transition: 200ms;
