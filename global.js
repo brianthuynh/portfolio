@@ -111,7 +111,7 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
         // Set the innerHTML of the article to include the project details  
         // add the year under the project description wrap both in a div tag to ooccupy the same grid cell and overlap
         article.innerHTML = `
-            <h3>${project.title}</h3>
+            <h3><a href="${project.link}" target="_blank">${project.title}</a></h3>
             <img src="${project.image}" alt="${project.title}">
         <div>
             <p>${project.description}</p>

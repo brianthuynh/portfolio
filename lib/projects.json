@@ -3,78 +3,91 @@
         "title": "Look at All Those Bikes!",
         "year": 2025,
         "image": "../lib/bikewatcher.png",
+        "link": "https://brianthuynh.github.io/bikewatcher/",
         "description": "Here's a data visualization I made using JS, D3 and CSS to visulize the bike traffic flow in Boston."
     },
     {
         "title": "Recipe Analysis and Calories Prediction",
         "year": 2024,
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "link": "https://brianthuynh10.github.io/bth-project/",
         "description": "This project aims to predict the calories of a recipe based on its ingredients. The project uses a dataset of recipes and their ingredients to train a machine learning model that can predict the calories of a recipe based on its ingredients."
     },
     {
         "title":  "Loan Prediction Analysis and Prediction",
         "year": 2024,
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "link": null,
         "description": "In this project, my group and I performed exploratory data analysis on a loan applicant dataset and trained machine learning models to see which was the best at predicting whether a loan applicant would default on their loan."
     },
     {
         "title": "N-Gram Language Model",
         "year": 2024,
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "link": null,
         "description": "In this class project, I implemented an N-gram language model in Python. The model was trained on a corpus of text and was able to generate new text based on the probabilities of word sequences in the training data."
     },
     {
         "title": "Water Polo Game Prediction Engine (On-Going)",
         "year": 2025,
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "link": null,
         "description": "This project is curretly being worked on. The goal of this project is to predict outcomes of water polo games similar to how analysts try to find the probability of each team winning"
     },
     {
         "title": "San Francisco's Strange Weather Pattern",
         "year": 2025,
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "link": null,
         "description": "Visualizaton Project where I performed some analysis and visualization on San Francisco's weather data. The project was done in Python and used the Pandas and Matplotlib libraries."
     },
     {
         "title": "Taylor Swift Music Analysis",
         "year": 2023,
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "link": null,
         "description": "In class project where I analyzed the lyrics of Taylor Swift's songs. The project used a large file of Taylor Swift's lyrics and used the Natural Language Toolkit (NLTK) library in Python to analyze the sentiment of the lyrics."
     },
     {
         "title": "Asteroid Analysis",
         "year": 2023,
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "link": null,
         "description": "In this project, I analyzed a dataset of asteroids and their characteristics. The project used the Pandas library in Python to perform exploratory data analysis on the dataset and visualize the results."
     },
     {
         "title": "Movie Actors & Movie Engine",
         "year": 2024,
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "link": null,
         "description": "Utlized Binary Search Trees to help sort out actors and they movies they appared in. Users will be able to find movies genres and star actors that appeared in them."
     },
     {
         "title": "Image Renderer and Processor",
         "year": 2024,
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "link": null,
         "description": "Used Python and Flattened 3 Arrays to create a 3D image renderer. The project also included a image processor that could apply filters to images. Capaable of blurring images, greyscale, and saturation."
     },
     {
         "title": "Parking Spot Estimation",
         "year": 2020,
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "link": null,
         "description": "Used Python and Machine Learning Models to predict the availability of parking spots in a parking lot. The project used a dataset of parking lot images and their corresponding availability to train a model that could predict the availability of parking spots in a new image."
     },
     {
         "title": "Simple Banking System in Python",
         "year": 2019,
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "link": null,
         "description": "Object oriented programming project where I created a simple banking system in Python. The system allowed users to create accounts, deposit and withdraw money, and view their account balance."
     },
     {
         "title": "Book Library System",
         "year" : 2021,
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "link": null,
         "description": "Object oriented programming project where I created a book library system in Python. The system allowed users to add books to the library, check out books, and view the library's collection of books."
     }
 ]
