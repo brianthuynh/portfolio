@@ -1,5 +1,11 @@
 [
     {
+        "title": "Look at All Those Bikes!",
+        "year": 2025,
+        "image": "../lib/bikewatcher.png",
+        "description": "Here's a data visualization I made using JS, D3 and CSS to visulize the bike traffic flow in Boston."
+    },
+    {
         "title": "Recipe Analysis and Calories Prediction",
         "year": 2024,
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",

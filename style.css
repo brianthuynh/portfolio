@@ -373,3 +373,8 @@ dl.info-tooltip[hidden]:not(:hover, :focus-within) {
 circle.selected {
   fill: #ff6b6b;
 }
+
+img {
+  max-width: 100%;
+  height: auto;
+}
