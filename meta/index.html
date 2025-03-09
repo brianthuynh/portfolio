@@ -10,28 +10,58 @@
 <body>
     <h1>Meta</h1>
     <div id="stats"></div>
-
     <h2>Commits by time of day</h2>
-        <div id="chart"></div>
+            <!-- File entry -->
+        <div id="scrollytelling">
+            <div id="scroll-container">
+                <div id="spacer"></div>
+                <!-- Narrative placed here as an introduction -->
+                <div id="items-container"></div>
+                <p>
 
-        <dl id="commit-tooltip" class="info-tooltip">
-            <dt>Commit</dt>
-            <dd>
-                <a href="" id="commit-link" target="_blank"></a>
-            </dd>
+                </p>
+            </div>
+            <div id="chart"></div>
+        </div>
+        
 
-            <dt>Date</dt>
+    <dl id="commit-tooltip" class="info-tooltip">
+        <dt>Commit</dt>
+        <dd><a href="#" id="commit-link" target="_blank"></a></dd>
+        <dt>Date</dt>
         <dd id="commit-date"></dd>
-
-    <!-- Add: Time, author, lines edited -->
+        <!-- Additional details -->
     </dl>
 
     <p id="selection-count">No commits selected</p>
     <dl id="language-breakdown" class="stats"></dl>
-    
 
-    <script src="../global.js" type="module" ></script>
+        <div id="dottytelling">
+            <div id="dotty-container">
+                <div id="dot-spacer"></div>
+                <!-- Narrative placed here as an introduction -->
+                <div id="dotItems-container"></div>
+                <p>
+
+                </p>
+            </div>
+            <div id="dotChart">
+                <dl class="files">
+                    <!-- we want the following structure for each file-->
+                    <div>
+                      <dt>
+                        <code>{file.name}</code>
+                      </dt>
+                      <dd>{file.lines.length} lines</dd>
+                    </div>
+                    <div>
+                      ...
+                    </div>
+                  </dl>            </div>
+        </div>
+
+
+    <script src="../global.js" type="module"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src='main.js'> </script>
+    <script src="main.js" type="module"></script>
 </body>
-</html>

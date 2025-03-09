@@ -1,7 +1,14 @@
+// Global variables to hold data and filtered commits
 let data = [];
 let commits = [];
+let filteredCommits = [];
 
 // Define loadData only once with the correct processing inside
+document.addEventListener('DOMContentLoaded', async () => {
+    await loadData();
+    
+});
+
 async function loadData() {
     data = await d3.csv('loc.csv', (row) => ({
         ...row,
@@ -11,15 +18,13 @@ async function loadData() {
         date: new Date(row.date + 'T00:00' + row.timezone),
         datetime: new Date(row.datetime),
     }));
+    processCommits();
     displayStats();
+    updateScatterplot(commits);
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
-    await loadData();
-    createScatterplot();
-});
-
 function processCommits() {
+
     commits = d3.groups(data, (d) => d.commit)
         .map(([commit, lines]) => {
             let first = lines[0];
@@ -44,6 +49,41 @@ function processCommits() {
             return ret;
         });
 }
+
+
+// Update time display and scatterplot based on slider value
+function updateTimeDisplay(newCommitSlice) {
+    let lines = newCommitSlice.flatMap((d) => d.lines);
+    let files = [];
+    files = d3
+    .groups(lines, (d) => d.file)
+    .map(([name, lines]) => {
+        return { name, lines };
+    });
+    files = d3.sort(files, (d) => -d.lines.length);
+    d3.select('.files').selectAll('div').remove(); // don't forget to clear everything first so we can re-render
+    let filesContainer = d3.select('.files').selectAll('div').data(files).enter().append('div');
+
+    filesContainer.append('dt').append('code').text(d => d.name) // TODO
+    filesContainer.append('dd').text(d => d.lines.length) // TODO
+    // Assuming filesContainer is your D3 selection where each 'dd' should be appended
+    let fileTypeColors = d3.scaleOrdinal(d3.schemeTableau10); // Color scheme to be used
+    filesContainer.append('dd')
+        .selectAll('div')
+        .data(d => d.lines)  // Bind the data array for lines of each file
+        .enter()             // Handle new data
+        .append('div')       // Append a div for each line
+        .attr('class', 'line')  // Set class attribute to 'line'
+        .style('background', d => fileTypeColors(d.type)); // Properly use color mapping
+    
+    
+}
+
+// Filter commits by date
+function filterCommitsByTime(maxDate) {
+    filteredCommits = commits.filter(commit => commit.datetime <= maxDate);
+}
+
 function displayStats() {
     // Process commits first
     processCommits();
@@ -89,11 +129,15 @@ function displayStats() {
 // Step 2: Drawing our graph
 let xScale;
 let yScale;
-function createScatterplot() {
+let selectedCommits = [];
+
+
+function updateScatterplot(filteredCommits) {
+    // same as before
     const width = 1000;
     const height = 600;
     const margin = { top: 10, right: 10, bottom: 30, left: 20 };
-    const sortedCommits = d3.sort(commits, (d) => -d.totalLines);
+    //const sortedCommits = d3.sort(commits, (d) => -d.totalLines);
     
     const usableArea = {
         top: margin.top,
@@ -104,14 +148,14 @@ function createScatterplot() {
         height: height - margin.top - margin.bottom,
     };
 
+    d3.select('svg').remove(); // first clear the svg
     const svg = d3.select('#chart')
         .append('svg')
         .attr('viewBox', `0 0 ${width} ${height}`)
         .style('overflow', 'visible');
-
-    // Update scales with margins
+  
     xScale = d3.scaleTime()
-        .domain(d3.extent(sortedCommits, (d) => d.datetime))
+        .domain(d3.extent(filteredCommits, (d) => d.datetime))
         .range([usableArea.left, usableArea.right])
         .nice();
 
@@ -124,8 +168,8 @@ function createScatterplot() {
     .attr('class', 'gridlines')
     .attr('transform', `translate(${usableArea.left}, 0)`);
 
-// Create gridlines as an axis with no labels and full-width ticks
-gridlines.call(d3.axisLeft(yScale).tickFormat('').tickSize(-usableArea.width));
+    // Create gridlines as an axis with no labels and full-width ticks
+    gridlines.call(d3.axisLeft(yScale).tickFormat('').tickSize(-usableArea.width));
     // Create and add the axes before plotting points
     const xAxis = d3.axisBottom(xScale);
     const yAxis = d3
@@ -141,13 +185,14 @@ gridlines.call(d3.axisLeft(yScale).tickFormat('').tickSize(-usableArea.width));
     svg.append('g')
         .attr('transform', `translate(${usableArea.left}, 0)`)
         .call(yAxis);
-    
-    // Add dots after setting up axes to avoid them lying outside
-    const [minLines, maxLines] = d3.extent(sortedCommits, (d) => d.totalLines);
+
+  
+    const [minLines, maxLines] = d3.extent(filteredCommits, (d) => d.totalLines);
     const rScale = d3.scaleSqrt().domain([minLines, maxLines]).range([5, 25]);
     const dots = svg.append('g').attr('class', 'dots');
+    dots.selectAll('circle').remove(); 
     dots.selectAll('circle')
-        .data(sortedCommits)
+        .data(filteredCommits)
         .join('circle')
         .attr('cx', (d) => xScale(d.datetime))
         .attr('cy', (d) => yScale(d.hourFrac))
@@ -157,15 +202,18 @@ gridlines.call(d3.axisLeft(yScale).tickFormat('').tickSize(-usableArea.width));
             updateTooltipContent(commit); // Update the content based on the data point
             updateTooltipVisibility(true); // Show the tooltip
             updateTooltipPosition(event); // Update position to be next to the cursor
+            d3.select(event.currentTarget).classed('selected', true);
         })
         .on('mouseleave', () => {
             updateTooltipContent({});
             updateTooltipVisibility(false); // Hide the tooltip
+            d3.select(event.currentTarget).classed('selected', false);
         });
     
     brushSelector();
-    
-}
+  
+    // same as before
+  }
 
 function updateTooltipContent(commit) {
     const link = document.getElementById('commit-link');
@@ -194,24 +242,26 @@ function updateTooltipPosition(event) {
 let brushSelection = null;
 
 function brushed(event) {
-   brushSelection = event.selection;
-   updateSelection();
-   updateSelectionCount();
-   updateLanguageBreakdown();
+    brushSelection = event.selection;
+    updateSelection();
+    updateSelectionCount();
+    updateLanguageBreakdown();
+    selectedCommits = !brushSelection
+      ? []
+      : commits.filter((commit) => {
+          let min = { x: brushSelection[0][0], y: brushSelection[0][1] };
+          let max = { x: brushSelection[1][0], y: brushSelection[1][1] };
+          let x = xScale(commit.date);
+          let y = yScale(commit.hourFrac);
+  
+          return x >= min.x && x <= max.x && y >= min.y && y <= max.y;
+        });
    
 }
 
 function isCommitSelected(commit) {
-    if (!brushSelection) return false; // If there's no brush selection, return false immediately.
-    // Define the minimum and maximum coordinates of the brush selection.
-    const min = { x: brushSelection[0][0], y: brushSelection[0][1] };
-    const max = { x: brushSelection[1][0], y: brushSelection[1][1] };
-    // Scale the commit's date and hour fraction to get their coordinates on the graph.
-    const x = xScale(commit.date); // Assuming commit.date holds the date of the commit.
-    const y = yScale(commit.hourFrac); // Assuming commit.hourFrac holds the hour fraction of the commit.
-    // Return true if the scaled coordinates are within the bounds of the brush selection.
-    return x >= min.x && x <= max.x && y >= min.y && y <= max.y;
-}
+    return selectedCommits.includes(commit);
+  }
   
 function updateSelection() {
     // Update visual state of dots based on selection
@@ -228,10 +278,7 @@ function brushSelector() {
 }
 
 function updateSelectionCount() {
-    const selectedCommits = brushSelection
-      ? commits.filter(isCommitSelected)
-      : [];
-  
+    
     const countElement = document.getElementById('selection-count');
     countElement.textContent = `${
       selectedCommits.length || 'No'
@@ -274,3 +321,119 @@ function updateLanguageBreakdown() {
     }
     return breakdown;
 }
+
+function renderItems(startIndex) {
+  console.log('renderItems called')
+    // Clear previous items
+    itemsContainer.selectAll('div').remove();
+    
+    // Determine the range of commits to display
+    console.log(commits.length);
+    console.log(startIndex + VISIBLE_COUNT);
+    const endIndex = Math.min(startIndex + VISIBLE_COUNT, commits.length);
+    let newCommitSlice = commits.slice(startIndex, endIndex);
+    
+    // Update the scatterplot with all commits (or filtered data if needed)
+    updateScatterplot(newCommitSlice);
+    
+    // Re-bind the commit data to the container and represent each using a div
+    itemsContainer.selectAll('div')
+                  .data(newCommitSlice)
+                  .enter()
+                  .append('div')
+                  .html(d => {
+                    // Generating HTML content for each commit
+                    const dateTimeStr = d.datetime.toLocaleString("en", {dateStyle: "full", timeStyle: "short"});
+                    const commitLink = d.url;
+                    const totalLinesEdited = d.totalLines;
+                    const filesAffected = d3.rollups(d.lines, lines => lines.length, line => line.file).length;
+                    const commitDescription = d.index > 0 ? 'another glorious commit' : 'my first commit, and it was glorious';
+                    return `
+                      <p>
+                        On ${dateTimeStr}, I made
+                        <a href="${commitLink}" target="_blank">
+                          ${commitDescription}
+                        </a>. I edited ${totalLinesEdited} lines across ${filesAffected} files. Then I looked over all I had made, and
+                        I saw that it was very good.
+                      </p>
+                    `;
+                  })
+                  .style('position', 'absolute')
+                  .style('top', (_, idx) => `${idx * ITEM_HEIGHT}px`);
+}
+
+function renderDots(startIndex) {
+  // Clear previous items
+  dotItemsContainer.selectAll('div').remove();
+  
+  // Determine the range of commits to display
+  const endIndex = Math.min(startIndex + VISIBLE_COUNT, commits.length);
+  let newCommitSlice = commits.slice(startIndex, endIndex);
+
+  console.log("New Commit Slice Length:", newCommitSlice.length);
+  console.log("Start Index:", startIndex);
+
+  
+  // ToDo: instead of updating a scatter plot update how many dots that show
+  updateTimeDisplay(newCommitSlice);
+
+
+  // Re-bind the commit data to the container and represent each using a div
+  dotItemsContainer.selectAll('div')
+                .data(newCommitSlice)
+                .enter()
+                .append('div')
+                .html(d => {
+                  // Generating HTML content for each commit
+                  const dateTimeStr = d.datetime.toLocaleString("en", {dateStyle: "full", timeStyle: "short"});
+                  const commitLink = d.url;
+                  const totalLinesEdited = d.totalLines;
+                  const filesAffected = d3.rollups(d.lines, lines => lines.length, line => line.file).length;
+                  const commitDescription = d.index > 0 ? 'another glorious commit' : 'my first commit, and it was glorious';
+                  return `
+                    <p>
+                      On ${dateTimeStr}, I made
+                      <a href="${commitLink}" target="_blank">
+                        ${commitDescription}
+                      </a>. I edited ${totalLinesEdited} lines across ${filesAffected} files. Then I looked over all I had made, and
+                      I saw that it was very good.
+                    </p>
+                  `;
+                })
+                .style('position', 'absolute')
+                .style('top', (_, idx) => `${idx * ITEM_HEIGHT}px`);
+}
+
+
+let NUM_ITEMS = 30; // Ideally, let this value be the length of your commit history
+let ITEM_HEIGHT = 90; // Feel free to change
+let VISIBLE_COUNT = 10; // Feel free to change as well
+let totalHeight = (NUM_ITEMS - 1) * ITEM_HEIGHT;
+
+const scrollContainer = d3.select('#scroll-container');
+const dottyContainer = d3.select('#dotty-container'); // for the second part 
+
+const spacer = d3.select('#spacer');
+const dotSpacer = d3.select('#dot-spacer');
+
+spacer.style('height', `${totalHeight}px`);
+dotSpacer.style('height', `${totalHeight}px`);
+
+
+const itemsContainer = d3.select('#items-container');
+scrollContainer.on('scroll', () => {
+  const scrollTop = scrollContainer.property('scrollTop');
+  let startIndex = Math.floor(scrollTop / ITEM_HEIGHT);
+  startIndex = Math.max(0, Math.min(startIndex, commits.length - VISIBLE_COUNT));
+  renderItems(startIndex);
+});
+
+
+const dotItemsContainer = d3.select('#dotItems-container');
+dottyContainer.on('scroll', () => {
+    const scrollTop = dottyContainer.property('scrollTop');
+    let startIndex = Math.floor(scrollTop / ITEM_HEIGHT);
+    startIndex = Math.max(0, Math.min(startIndex, commits.length - VISIBLE_COUNT));
+    renderDots(0);
+  });
+

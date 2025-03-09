@@ -287,8 +287,11 @@ path {
   --color: oklch(60% 45% 0) !important;
   &:is(path) {
     fill: var(--color);
-  }
+    stroke: black;
+    stroke-width: 2px;
+   }
 }
+
 /* Styles for gridlines within the SVG */
 .gridlines line {
   stroke: #ccc; /* Light grey color for gridlines */
@@ -340,6 +343,7 @@ circle {
   transition: 200ms;
   transform-origin: center;
   transform-box: fill-box;
+  
 }
 
 circle:hover {
@@ -378,3 +382,139 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+
+#chart-container{ 
+  flex:1;
+  align-items: baseline;
+}
+
+#commit-time{ 
+  margin-left:auto
+}
+
+
+
+.files > div {
+  grid-column: 1/-1;
+  display: grid;
+  grid-template-columns: subgrid; /* Adapt column sizes as needed */
+}
+
+.files dt {
+  grid-column: 1;
+}
+
+.files dd {
+  grid-column: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  align-content: start;
+  gap: 0.15em;
+  padding-top: 0.6em;
+  margin-left: 0;
+}
+
+#dots {
+  grid-column:3;
+  display: flex;
+  flex-wrap: nowrap; /* Prevents wrapping to ensure horizontal layout */
+  overflow-x: auto; /* Allows horizontal scrolling if dots exceed the container width */
+}
+
+
+.line {
+  display: flex;
+  width: 0.5em;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+
+:global(body){
+  max-width: min(120ch, 80vw);
+}
+
+#scrollytelling {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+}
+
+/* feel free to play with this to make your scrolly more seemless with your plot */
+#scroll-container {
+  grid-column: 1;
+  position: relative;
+  width: 95%;
+  height: 350px;
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+  margin-bottom: 50px;
+}
+
+#chart {
+  grid-column: 2;
+}
+
+#spacer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: none; /* transparent */
+  pointer-events: none;
+}
+
+#items-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.item {
+  height: 90px;
+  padding: 10px;
+  box-sizing: border-box;
+  border-bottom: 2px solid #eee;
+}
+
+/* For the dots graph */
+#dottytelling {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+}
+
+
+#dotty-container {
+  grid-column: 1;
+  position: relative;
+  width: 95%;
+  height: 350px;
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+  margin-bottom: 50px;
+}
+
+#dotChart {
+  grid-column: 2;
+}
+
+#dot-spacer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: none; /* transparent */
+  pointer-events: none;
+}
+
+#dotItems-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
