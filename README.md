@@ -1,2 +1,2 @@
 # portfolio
- Lab 1 for DSC106 @ UCSD
+Labs for DSC106 @ UCSD
